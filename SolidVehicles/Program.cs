@@ -1,20 +1,41 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-public interface IVehicle
-{ // an int property called Wheels // an int property called Doors // an int property called PassengerCapacity // a bool property called Winged // a string property called TransmissionType // a double property called EngineVolume // a double property called MaxWaterSpeed // a double property called MaxLandSpeed // a double property called MaxAirSpeed // a method called Start() that returns void // a method called Stop() that returns void // a method called Drive() that returns void // a method called Fly() that returns void
-}
-public class JetSki : IVehicle
-{
-    public int Wheels { get; set; }
-    public int Doors { get; set; }
-    public int PassengerCapacity { get; set; }
-    public bool Winged { get; set; }
-    public string TransmissionType { get; set; }
-    public double EngineVolume { get; set; }
-    public double MaxWaterSpeed { get; set; }
-    public double MaxLandSpeed { get; set; }
-    public double MaxAirSpeed { get; set; }
+using SolidVehicles;
+
+namespace SolidVehicles {
+
+    // IVehicle interface will be all items that All vehicles have in common
+    public interface IVehicle
+    {
+        string Name { get; set; }
+        string Type { get; set; }
+        int PassengerCapacity { get; set; }
+        bool Winged { get; set; }
+        string TransmissionType { get; set; }
+        double EngineVolume { get; set; }
+
+        void Start();
+        void Stop();
+    }
+
+    public interface IWaterVehicle: IVehicle
+    {
+        string Name { get; set; }
+        double MaxWaterSpeed { get; set; }
+    }
+
+    public interface ILand
+    {
+        string Name { get; set; }
+        int Wheels { get; set; }
+        int Doors { get; set; }
+        double MaxLandSpeed { get; set; }
+        double EngineVolume { get; set; }
+
+        void Drive();
+    }
+
 
     public void Drive()
     {
@@ -122,4 +143,5 @@ public class Program
 
         // With a single `foreach`, have each water vehicle Drive()
     }
+}
 }
